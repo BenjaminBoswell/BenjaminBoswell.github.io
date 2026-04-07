@@ -1,0 +1,721 @@
+<DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Benjamin Boswell — Concept Artist</title>
+
+        <!--Style sheets for css and fonts to make the website look better, jack if you are reading this i heavily referenced a built site to make mine look better-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600&family=Share+Tech+Mono&display=swap"
+            rel="stylesheet" />
+
+        <!--My style sheet file-->
+
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+
+    <body>
+        <!--Helps the user naviagte the website-->
+        <nav>
+            <a href="#hero" class="nav-logo">BB<span>.</span></a>
+
+            <!--Mobile only hamburger makes a more readable menue on mobile-->
+            <button class="hamburger" id="hamburger" aria-label="menu">
+                <!--The empty span tags make horizontal line css and java script does it magic and makes it work-->
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!--Nav links that let you navigate the stuff on the page-->
+            <ul class="nav-links" id="nav-links">
+
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Work</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+        </nav>
+
+        <!--The call it a hero section idk why fully yet but it makes the site look nicer-->
+
+        <section id="hero">
+
+            <!--Background glow nice colors-->
+            <div class="hero-bg"></div>
+
+            <!--Horizontal scan lines texture, nice patter fits my viusla style-->
+            <div class="scanlines"></div>
+
+            <!--My big name in the background water mark "Because im so special" lol, nice visual-->
+            <div class="hero-ghost">BOSWELL</div>
+
+            <!--Visible content: label, name, description, buttons etc-->
+            <div class="hero-content">
+
+                <!--Tag line above my name-->
+                <p class="hero-tag">//Art Lead &amp; Game Developer</p>
+
+                <!-- h1 to show my name as the main focus of the site and will draw attention to who i am-->
+                <h1 class="hero-name">BENJAMIN<br><!--span lets us style my last name differently--> <span
+                        class="accent-block">BOSWELL</span></h1>
+
+                <!--My brief introduction to who i am-->
+                <p class="hero-desc">
+                    From imagination to your eyes my skillsets brings you soething you wont soon forget.
+                    For years i built my visual skillset to craft from traditional art and digital,
+                    my skills in environment art, characterr design, unique well though experiences and stories.
+                    Games that you never seen before my skils focus on the visual and interactive experiences
+                    that reach you in ways you never could have imagined.
+                </p>
+
+                <!--Ways to get the viewer of my website to either viewing my work or get in contact with me quickly-->
+                <div class="hero-cta">
+                    <a href="#portfolio" class="btn-primary-custom">View Work</a>
+                    <a href="#contact" class="btn-ghost-custom">Get In Touch</a>
+                </div>
+
+            </div> <!-- end of hero content so after looking at it, a good wuick way to introduce myself-->
+
+            <!-- Vertical "Scroll" hint in the bottom-right corner of the hero -->
+            <div class="hero-scroll-hint">Scroll</div>
+
+        </section>
+
+        <!--Marquee strip an infinite scrolling text banner that displays my skills-->
+
+        <div class="marquee-strip">
+
+            <div class="marquee-track">
+
+                <!-- First loop -->
+                <span>Digital Painting</span><span class="lit">✦</span>
+                <span>Pixel Artist</span><span class="lit">✦</span>
+                <span>Manga &amp; Ink</span><span class="lit">✦</span>
+                <span>Environment Design</span><span class="lit">✦</span>
+                <span>Character Design</span><span class="lit">✦</span>
+                <span>Game Development</span><span class="lit">✦</span>
+                <span>Concept Art</span><span class="lit">✦</span>
+                <span>Art Lead</span><span class="lit">✦</span>
+                <span>Level Designer</span><span class="lit">✦</span>
+                <span>Game Director</span><span class="lit">✦</span>
+
+                <!-- Duplicate copy — needed for the seamless infinite loop which is neat -->
+                <span>Digital Painting</span><span class="lit">✦</span>
+                <span>Pixel Artist</span><span class="lit">✦</span>
+                <span>Manga &amp; Ink</span><span class="lit">✦</span>
+                <span>Environment Design</span><span class="lit">✦</span>
+                <span>Character Design</span><span class="lit">✦</span>
+                <span>Game Development</span><span class="lit">✦</span>
+                <span>Concept Art</span><span class="lit">✦</span>
+                <span>Art Lead</span><span class="lit">✦</span>
+                <span>Level Designer</span><span class="lit">✦</span>
+                <span>Game Director</span><span class="lit">✦</span>
+
+            </div>
+        </div>
+
+        <!--About section of the websire photo of me biography and such-->
+        <section id="about">
+
+            <div class="section-label">// 01 - About</div>
+
+            <!--h2 now moved on from the main title we can section the website nice and neatly-->
+            <h2 class="section-title"> WHO I AM </h2>
+
+            <!-- Decorative orange-to-transparent horizontal rule -->
+            <div class="divider"></div>
+
+            <!--Two column style grid : phot on the left , text on the right mobile friendly-->
+            <div class="about-grid">
+                <div class="about-photo-wrap reveal">
+                    <img class="about-photo" src="MyPhotos/Me/Webstite temp pfp.png" alt="Benjamin Boswell" />
+                </div>
+
+                <div class="about-text reveal">
+                    <p>
+                        <strong>Hello - I'm Benjamin.</strong> Im a Video Game developer and Concept Artist with a love
+                        for visual creativity. Thinking outside of the box whatever i build weather it be artwork for a
+                        book series or an action packed video I will make you see thing you wont soon forget.
+                    </p>
+                    <p>
+                        Wether you are looking for something as specific as a fantasy epic book, with fantasy
+                        ethnicities in a Cyberpunk setting, to time traveling redneck engineers fighting off a robot
+                        apocolypse using osha violations as weapons. Video Games that you never could have imagined,
+                        to art that you never seen before, I will build things in an unconventinal way that will make
+                        you see things from a new perspective.
+                    </p>
+                    <p>
+                        I work in <strong>digital painting</strong>, <strong>manga/ink</strong>,
+                        <strong>pixel art</strong>, and <strong>traditional media</strong>, and I bring those
+                        visuals into interactive experiences through game development along with strong directing
+                        skills.
+                    </p>
+                    <div class="skills-row">
+                        <span class="skill-tag">Procreate</span>
+                        <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">Unreal</span>
+                        <span class="skill-tag">Unity</span>
+                        <span class="skill-tag">Aseprite</span>
+                        <span class="skill-tag">HTML / CSS / JS</span>
+                        <span class="skill-tag">Character Design</span>
+                        <span class="skill-tag">Environment Art</span>
+                        <span class="skill-tag">Motion Capture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- End of the about section-->
+
+        <!--Portfolio section the stuff i made over the years that i am proud of-->
+
+        <section id="portfolio">
+
+            <div class="section-label">// 02 — Portfolio</div>
+            <h2 class="section-title">THE WORK</h2>
+            <div class="divider"></div>
+
+            <!-- ── CATEGORY 1: Digital Painting ─────────────────── -->
+            <div class="portfolio-cat reveal">
+                <h3>Digital Painting</h3>
+                <p class="cat-meta">// Rendered characters, environments &amp; scenes — painterly technique</p>
+
+                <div class="gallery-scroll" id="scroll-digital">
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/Drone and SSB robot kit.png"
+                            alt="Drone — Robot" loading="lazy" />
+                        <div class="gallery-item-label">Drone — Robot</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/Hardy Fowler Cyberpunk City regular finish.png"
+                            alt="Cyberpunk City Study" loading="lazy" />
+                        <div class="gallery-item-label">Cyberpunk City Study</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/PortShip-Hardy-Fowler finished.png"
+                            alt="Port Ship Study" loading="lazy" />
+                        <div class="gallery-item-label">Port Ship Study</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/FacePractice final.png"
+                            alt="Face Study — Hero" loading="lazy" />
+                        <div class="gallery-item-label">Face Study — Hero</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/FacePracticeVillian finished.png"
+                            alt="Face Study — Villain" loading="lazy" />
+                        <div class="gallery-item-label">Face Study — Villain</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/Drone practice hardy fowler complete.png"
+                            alt="Drone Practice" loading="lazy" />
+                        <div class="gallery-item-label">Drone Practice</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/2nd Canyon.png" alt="Environment — Canyon"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Environment — Canyon</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/Forest project finished.png"
+                            alt="Digital Armor" loading="lazy" />
+                        <div class="gallery-item-label">Forest Project</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/Hardy fowler Digital creations Pistol render.png"
+                            alt="Pistol Render" loading="lazy" />
+                        <div class="gallery-item-label">Pistol Render</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/Rock practice.png" alt="Rock Practice"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Rock Practice</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/Pistol final shape.png"
+                            alt="Pistol — Final Shape" loading="lazy" />
+                        <div class="gallery-item-label">Pistol — Final Shape</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Digital painting/Pistol rough.png" alt="Pistol — Rough"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Pistol — Rough</div>
+                    </div>
+
+                    <!-- Placeholder — swap in a real image when you have one -->
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <!-- Simple image icon SVG -->
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#888"
+                                stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <path d="M21 15l-5-5L5 21" />
+                            </svg>
+                            <span>[ Coming Soon ]</span>
+                        </div>
+                        <div class="gallery-item-label">New Piece — TBA</div>
+                    </div>
+
+                </div>
+
+                <div class="gallery-arrows">
+                    <button class="gallery-arrow" onclick="scrollGallery('scroll-digital', -1)">&#8592;</button>
+                    <button class="gallery-arrow" onclick="scrollGallery('scroll-digital',  1)">&#8594;</button>
+                </div>
+
+            </div><!-- end .gallery-outer -->
+            </div><!-- end .portfolio-cat -->
+
+            <!-- ── CATEGORY 2: Manga & Ink ───────────────────────── -->
+            <div class="portfolio-cat reveal">
+                <h3>Manga &amp; Ink</h3>
+                <p class="cat-meta">// Black and white ink work — high contrast, bold linework</p>
+
+                <div class="gallery-scroll" id="scroll-manga">
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/Alora.png" alt="Alora — Masked Character"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Alora — Masked Character</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/Ancient one.png" alt="The Ancient One"
+                            loading="lazy" />
+                        <div class="gallery-item-label">The Ancient One</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/Asssasin_vs_paul.webp" alt="Assassin vs Paul"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Assassin vs Paul</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/castle_dream.webp" alt="Castle Dream"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Castle Dream</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/dragons_render.webp" alt="Dragon Render"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Dragon Render</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/Ghost_Girl_.webp" alt="Ghost Girl" loading="lazy" />
+                        <div class="gallery-item-label">Ghost Girl</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/IMG_2087.webp" alt="Day 1 — Out of Place"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Cole — lost</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/IMG_2149.webp" alt="Day 5 — Unknown"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Half Breed - Back cover</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Manga art/Untitled_Artwork.webp" alt="Character Study"
+                            loading="lazy" />
+                        <div class="gallery-item-label">Olivia - stretching </div>
+                    </div>
+
+                    <!-- Placeholder -->
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#888"
+                                stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <path d="M21 15l-5-5L5 21" />
+                            </svg>
+                            <span>[ Coming Soon ]</span>
+                        </div>
+                        <div class="gallery-item-label">New Piece — TBA</div>
+                    </div>
+
+                </div>
+
+                <div class="gallery-arrows">
+                    <button class="gallery-arrow" onclick="scrollGallery('scroll-manga', -1)">&#8592;</button>
+                    <button class="gallery-arrow" onclick="scrollGallery('scroll-manga',  1)">&#8594;</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- ── CATEGORY 3: Pixel Art ─────────────────────────── -->
+            <div class="portfolio-cat reveal">
+                <h3>Pixel Art</h3>
+                <p class="cat-meta">// Retro-style sprite art &amp; scene work</p>
+
+                <div class="gallery-scroll" id="scroll-pixel">
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Pixel art/unknown.webp" alt="Unknown Piece" loading="lazy"
+                            style="image-rendering:pixelated;" />
+                        <div class="gallery-item-label">Unknown Piece</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Pixel art/Day13_Flight.gif" alt="Pixel — Night Sky"
+                            loading="lazy" style="image-rendering:pixelated;" />
+                        <div class="gallery-item-label">Night Sky Scene</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Pixel art/Day3_Flow.gif" alt="Pixel — Flow Animated"
+                            loading="lazy" style="image-rendering:pixelated;" />
+                        <div class="gallery-item-label">Flow — Animated</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Pixel art/Day9_New_Tech.gif" alt="Pixel — New Tech"
+                            loading="lazy" style="image-rendering:pixelated;" />
+                        <div class="gallery-item-label">New Tech — Animated</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Pixel art/Day10_Beacon_AKA_PLUS_ULTRA_SMASH-Finale.gif"
+                            alt="Pixel — Beacon Smash" loading="lazy" style="image-rendering:pixelated;" />
+                        <div class="gallery-item-label">Beacon — Animated</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Pixel art/HomingAttack.gif" alt="Pixel — Homing Attack"
+                            loading="lazy" style="image-rendering:pixelated;" />
+                        <div class="gallery-item-label">Homing Attack — Animated</div>
+                    </div>
+
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <img src="MyPhotos/Portfolio art/Pixel art/Laser_Attack.gif" alt="Pixel — Laser Attack"
+                            loading="lazy" style="image-rendering:pixelated;" />
+                        <div class="gallery-item-label">Laser Attack — Animated</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#888"
+                                stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <path d="M21 15l-5-5L5 21" />
+                            </svg>
+                            <span>[ Coming Soon ]</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="gallery-arrows">
+                    <button class="gallery-arrow" onclick="scrollGallery('scroll-pixel', -1)">&#8592;</button>
+                    <button class="gallery-arrow" onclick="scrollGallery('scroll-pixel',  1)">&#8594;</button>
+                </div>
+            </div>
+
+            </div>
+
+        </section>
+
+        <!-- end portfolio -->
+
+        <!--Game / Video section showing my gameplay footage-->
+        <section id="games">
+
+            <div class="section-label">// 03 — Interactive &amp; Games</div>
+            <h2 class="section-title">GAMEPLAY</h2>
+            <div class="divider"></div>
+
+            <p class="reveal" style="color:var(--dim); max-width:520px; margin-bottom:3rem;">
+                Beyond concept art and animations I do love leading video game projects and even progaming some of my
+                own. Below are some of the projects i worked on go ahead and take a look! - click to watch.
+            </p>
+
+            <div class="video-grid">
+
+                <!-- Video Card 1 -->
+                <div class="video-card reveal">
+                    <iframe src="https://www.youtube-nocookie.com/embed/7MlJov9eACs"
+                        style="width:100%; aspect-ratio:16/9; border:none; display:block;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-card-label">
+                        <h4>Project Alpha</h4>
+                        <p>// Gameplay Prototype — 2D Action</p>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="video-card reveal">
+                    <iframe src="https://www.youtube-nocookie.com/embed/v9YJZg2cKCM"
+                        style="width:100%; aspect-ratio:16/9; border:none; display:block;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-card-label">
+                        <h4>Project Beta</h4>
+                        <p>// Level Design Demo</p>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="video-card reveal">
+                    <iframe src="https://www.youtube-nocookie.com/embed/LhDOKWtNZtU"
+                        style="width:100%; aspect-ratio:16/9; border:none; display:block;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-card-label">
+                        <h4>Project Gamma</h4>
+                        <p>// Game Jam Entry</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end video-grid -->
+
+        </section>
+        <!--end games-->
+
+        <!--Contact Section-->
+
+        <section id="contact">
+
+            <div class="section-label">// 04 — Contact</div>
+            <h2 class="section-title">GET IN TOUCH</h2>
+            <div class="divider"></div>
+
+            <!-- Two-column grid: links on the left, form on the right -->
+            <div class="contact-grid">
+
+                <!-- LEFT: Social and contact links -->
+                <div class="contact-info reveal">
+
+                    <p>Whether you're building a project that needs concept art, collaborating on a game,
+                        or just want to talk shop about design — reach out. I'm always down to work with
+                        people who give a damn about craft.
+                    </p>
+
+                    <a href="mailto:boswellb419@gmail.com" class="contact-link">
+                        <span class="link-icon">✉</span>
+                        boswellb419@gmail.com
+                    </a>
+
+                    <a href="https://github.com/BenjaminBoswell" target="_blank" class="contact-link">
+                        <span class="link-icon">⌥</span>
+                        github.com/BenjaminBoswell
+                    </a>
+
+                    <a href="https://www.artstation.com/benjaminboswell1" target="_blank" class="contact-link">
+                        <span class="link-icon">◈</span>
+                        ArtStation
+                    </a>
+
+                    <a href="https://www.instagram.com/boswell.benjamin/" target="_blank" class="contact-link">
+                        <span class="link-icon">◉</span>
+                        Instagram
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/benjamin-boswell-gamedev-concept-artist/" target="_blank"
+                        class="contact-link">
+                        <span class="link-icon">◎</span>
+                        LinkedIn
+                    </a>
+
+                </div>
+
+                <!--end contact-info -->
+
+                <!--Right: Contact form It doesn send anything yet need to sign up somewhere to do that, the document reccomends <form action="https://formspree.io/f/YOUR_ID" method="POST"> need to change the opening tag to that -->
+                <form class="contact-form reveal" onsubmit="handleForm(event)">
+
+                    <!-- Name field -->
+                    <div class="form-field">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required />
+                    </div>
+
+                    <!-- Email validates the format automatically -->
+                    <div class="form-field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                    </div>
+
+                    <!-- Message -->
+                    <div class="form-field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="What are you working on?"
+                            required></textarea>
+                    </div>
+
+                    <!-- submit -->
+                    <button type="submit" class="btn-primary-custom" style="align-self:flex-start;">
+                        Send Message &#8594;
+                    </button>
+
+                    <!-- Confirmation message -->
+                    <p id="form-status"
+                        style="font-family:var(--ff-mono); font-size:.7rem; letter-spacing:.15em; color:var(--accent); display:none;">
+                    </p>
+
+
+                </form>
+
+                <!--Footer-->
+
+            </div>
+            <!--End contact-grid -->
+
+        </section>
+        <!--End contact -->
+
+        <!--Footer-->
+        <footer>
+            <p>&copy; 2025 Benjamin Boswell — All rights reserved.</p>
+            <!-- Quick jump links — bookmark hyperlinks to key sections -->
+            <div class="footer-links">
+                <a href="#hero">Top</a>
+                <a href="#portfolio">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </footer>
+
+        <!--Light box-->
+        <div id="lightbox">
+
+            <button id="lightbox-close" onclick="closeLightbox()">[ CLOSE ]</button>
+
+            <img id="lightbox-img" src="" alt="" />
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!--Interactive page java script-->
+
+        <!--Hamburger menu-->
+        <script>
+            const ham = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            ham.addEventListener('click', () => {
+                ham.classList.toggle('open');       // Animate 3 bars → X (or back)
+                navLinks.classList.toggle('open');  // Show / hide the link dropdown
+            });
+
+            /*Scroll reveal animation*/
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {              // Has it scrolled into view?
+                        entry.target.classList.add('visible'); // Trigger the CSS animation
+                        observer.unobserve(entry.target);      // Stop watching — plays once only
+                    }
+                });
+            }, { threshold: 0.12 }); // Fire when 12% of the element is visible
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            /*Gallery arrow scroll*/
+
+            function scrollGallery(id, dir) {
+                const el = document.getElementById(id);
+                el.scrollBy({ left: dir * 420, behavior: 'smooth' });
+            }
+
+            //Drag to scroll galleries 
+
+            document.querySelectorAll('.gallery-scroll').forEach(el => {
+                let isDown = false; // Is the mouse button held down right now?
+                let startX;         // Where the drag began (mouse X position)
+                let scrollL;        // scrollLeft value at the start of the drag
+
+                el.addEventListener('mousedown', e => {
+                    isDown = true;
+                    startX = e.pageX - el.offsetLeft; // Mouse X relative to gallery
+                    scrollL = el.scrollLeft;            // Record starting scroll amount
+                });
+
+                el.addEventListener('mouseleave', () => { isDown = false; }); // Dragged off — stop
+                el.addEventListener('mouseup', () => { isDown = false; }); // Released — stop
+
+                el.addEventListener('mousemove', e => {
+                    if (!isDown) return;  // Only run while mouse button is held
+                    e.preventDefault();   // Stop text from being highlighted while dragging
+                    const x = e.pageX - el.offsetLeft;
+                    el.scrollLeft = scrollL - (x - startX) * 1.5; // * 1.5 = slightly faster scroll
+                });
+            });
+
+            //LightBox full screen image viewer
+
+            function openLightbox(card) {
+                const img = card.querySelector('img'); // Find the <img> inside the clicked card
+                if (!img) return;                      // If no image (e.g. placeholder), do nothing
+
+                // Copy the image's URL and description into the lightbox <img>
+                document.getElementById('lightbox-img').src = img.src;
+                document.getElementById('lightbox-img').alt = img.alt;
+
+                // Adding class "open" makes the lightbox visible (CSS: display:flex)
+                document.getElementById('lightbox').classList.add('open');
+
+                // Lock the page scroll so the user can't scroll while the lightbox is open
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                document.getElementById('lightbox').classList.remove('open'); // Hide the lightbox
+                document.body.style.overflow = ''; // Restore normal page scrolling
+            }
+
+            // Clicking the dark background (not the image) closes the lightbox
+            document.getElementById('lightbox').addEventListener('click', e => {
+                if (e.target === e.currentTarget) closeLightbox();
+            });
+
+            // Pressing Escape also closes the lightbox
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') closeLightbox();
+            });
+
+            //Contact form handler
+            function handleForm(e) {
+                e.preventDefault(); // Stop page reload
+
+                const status = document.getElementById('form-status');
+                status.style.display = 'block'; // Make the confirmation paragraph visible
+                status.textContent = "// Message sent — I'll get back to you soon.";
+
+                e.target.reset(); // Clear all the form inputs
+            }
+
+        </script>
+
+    </body>
+
+    </html>

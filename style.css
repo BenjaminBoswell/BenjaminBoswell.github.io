@@ -1,0 +1,1023 @@
+
+:root {
+  /* --- Colours --- */
+  --ink:    #0a0a0a;   /* near-black — main background */
+  --paper:  #f0ece4;   /* off-white  — main text colour */
+  --mid:    #1a1a1a;   /* dark grey  — alternate section background */
+  --edge:   #2e2e2e;   /* medium grey — borders and dividers */
+  --accent: #ff4e00;   /* burnt orange — the ONE pop of colour */
+  --cool:   #4fc3f7;   /* light blue  — subtle cool highlight (hero glow) */
+  --dim:    #888888;   /* mid grey    — secondary / muted text */
+
+  /* --- Font Families --- */
+  /* These fonts are loaded from Google Fonts in index.html's <head> */
+  --ff-display: 'Bebas Neue', sans-serif;       /* tall, condensed — used for big headings */
+  --ff-body:    'Barlow Condensed', sans-serif; /* clean and narrow — used for paragraphs */
+  --ff-mono:    'Share Tech Mono', monospace;   /* typewriter feel — used for labels & tags */
+}
+
+
+/* RESET & BASE STYLES */
+
+/* Target every element, including ::before and ::after pseudo-elements */
+*, *::before, *::after {
+  box-sizing: border-box; /* Makes width/height include padding & border (much easier to work with) */
+  margin: 0;              /* Remove all default browser margins makes it tight and neat */
+  padding: 0;             /* Remove all default browser padding makes it all tight and neat */
+}
+
+html {
+  scroll-behavior: smooth; /* the page glides instead of jumping due to the css styling */
+}
+
+body {
+  background: var(--ink);       /* Page background  near-black grabs the colors from up top to make it work */
+  color: var(--paper);          /* Default text colour off-white makes it a nice contrast with the web page */
+  font-family: var(--ff-body);  /* Default font for the web page */
+  font-size: 1.50rem;           /* Base font size (rem = relative to browser default, usually 16px) rem is interesting i am increasing it compared to the reference so i can have a good read on the site compared to the original because I want to read it better */
+  line-height: 1.6;             /* Space between lines of text — 1.6 is comfortable to read */
+  cursor: crosshair;            /* Changes the mouse cursor to a + crosshair makes it look neat*/
+  overflow-x: hidden;           /* Prevent any horizontal scrollbar on the page makes it look neat */
+}
+
+
+/* GRAIN / NOISE OVERLAY This adds a subtle film-grain texture over the ENTIRE page.In the hero section I want to add in automatic video playing*/
+body::before {
+  content: '';           /* Required for pseudo-elements — even if blank */
+  position: fixed;       /* Stays fixed to the viewport (doesn't scroll) */
+  inset: 0;              /* Shorthand for top:0; right:0; bottom:0; left:0 — fills the whole screen */
+
+  /* This is an SVG (vector image) encoded directly into the CSS. Generates a noise texture that makes a filter that makes the site look like it has a static affect on the page I dont know how it full works but it makes sense */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+
+  pointer-events: none;  /* Lets clicks pass through — otherwise this layer would block everything */
+  z-index: 9999;         /* Sits above everything else in the stacking order */
+  opacity: .35;          /* Very transparent — just a whisper of texture */
+}
+
+
+/* CUSTOM SCROLLBAR universial except fire fox */
+::-webkit-scrollbar       { width: 9px; }                      /* normal sized bar — 9px wide */
+::-webkit-scrollbar-track { background: var(--ink); }          /* The track (background of the bar) */
+::-webkit-scrollbar-thumb { background: var(--accent); }       /* The draggable bit — orange */
+
+
+/* TEXT SELECTION COLOUR */
+::selection {
+  background: var(--accent); /* Highlight colour = orange makes it feel the style of the page */
+  color: var(--ink);         /* Text colour when selected = near-black to show it was selected and make it more dynamic*/
+}
+
+
+/* NAVIGATION BAR allignes everything at the top to make it nice and neat through out the page even when you scroll downwards*/
+nav {
+  position: fixed;              /* Sticks to the top even when scrolling */
+  top: 0; left: 0; right: 0;   /* Spans the full width of the viewport */
+  z-index: 1000;                /* Sits above page content (but below the grain overlay) */
+  display: flex;                /* Lay out children side-by-side */
+  align-items: center;          /* Vertically centre logo and links */
+  justify-content: space-between; /* Push logo to left, links to right */
+  padding: 1rem 2.5rem;         /* Inner spacing: top/bottom 1rem, left/right 2.5rem */
+  background: rgba(10,10,10,.85); /* Semi-transparent near-black (rgba = red,green,blue,alpha) */
+  backdrop-filter: blur(12px);  /* Blurs whatever is BEHIND the nav (frosted glass effect) */
+  border-bottom: 1px solid var(--edge); /* Thin grey line under the nav */
+}
+
+/* The "BB." logo in the top left */
+.nav-logo {
+  font-family: var(--ff-display); /* Big display font */
+  font-size: 2.75rem;
+  letter-spacing: .12em;          /* Spread letters apart slightly */
+  color: var(--paper);
+  text-decoration: none;          /* Remove the default underline from <a> tags */
+}
+
+/* The dot after "BB" — coloured orange */
+.nav-logo span {
+  color: var(--accent);
+}
+
+/* The <ul> list that holds the nav links */
+.nav-links {
+  display: flex;      /* Links sit side by side */
+  gap: 2rem;          /* Space between each link */
+  list-style: none;   /* Remove the default bullet points from the <ul> */
+}
+
+/* Each individual nav link */
+.nav-links a {
+  font-family: var(--ff-mono);
+  font-size: .75rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;  /* Force all text to CAPS */
+  color: var(--dim);          /* Grey by default */
+  text-decoration: none;
+  transition: color .2s;      /* Smoothly animate the colour change on hover (over 0.2 seconds) */
+}
+
+/* When you hover over a nav link, it turns orange */
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+
+/* HAMBURGER MENU for mobile version shows up the nav links making it a whole lot easier on mobile*/
+.hamburger {
+  display: none;          /* Hidden on desktop — shown only on mobile (see media query below) */
+  flex-direction: column; /* Stack the three lines vertically */
+  gap: 5px;               /* Space between each line */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Each of the 3 horizontal lines in the hamburger button */
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--paper);
+  transition: all .3s; /* Animate any changes (used for the X animation) */
+}
+
+/* When the hamburger has the class "open" added by JavaScript: essentally rotates it manually */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }  /* Top line rotates to form top of X */
+.hamburger.open span:nth-child(2) { opacity: 0; }                                /* Middle line disappears */
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); } /* Bottom line rotates to form bottom of X */
+
+/* MEDIA QUERY: These rules only apply when the screen is 768px wide or less, so when on mobile or scrunched up close */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }  /* Show the hamburger button on mobile */
+
+  .nav-links {
+    display: none;              /* Hide the nav links by default on mobile */
+    position: absolute;         /* Pull out of normal flow so it overlays the page */
+    top: 100%;                  /* Position directly below the nav bar */
+    left: 0; right: 0;
+    flex-direction: column;     /* Stack links vertically on mobile */
+    background: var(--mid);
+    padding: 1.5rem 2.5rem;
+    gap: 1.2rem;
+  }
+
+  /* When JavaScript adds "open" class to the nav links, show them */
+  .nav-links.open { display: flex; }
+}
+
+
+/* HERO SECTION the opening segment at the top of the page */
+#hero {
+  min-height: 100vh;          /* At least 100% of the viewport height (vh = viewport height) */
+  display: flex;
+  flex-direction: column;     /* Stack children vertically */
+  justify-content: flex-end;  /* Push content to the BOTTOM of the section */
+  padding: 7rem 2.5rem 4rem;  /* top: 7rem (clears the nav), sides: 2.5rem, bottom: 4rem */
+  position: relative;         /* Required so absolutely-positioned children (bg, scanlines) work correctly */
+  overflow: hidden;           /* Clip anything that extends outside this section */
+}
+
+/* The coloured glow background — two soft radial gradients layered */
+.hero-bg {
+  position: absolute; /* Remove from normal flow — sits behind everything in the hero */
+  inset: 0;           /* Fill the entire hero section */
+  background:
+    /* A subtle cool blue glow in the upper-right */
+    radial-gradient(ellipse 60% 70% at 70% 40%, rgba(79,195,247,.06) 0%, transparent 80%),
+    /* A subtle orange glow in the lower-left */
+    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(255,78,0,.08) 0%, transparent 60%),
+    var(--ink); /* Base ink colour underneath */
+}
+
+/* Horizontal scan lines — like an old CRT monitor */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  /* repeating-linear-gradient creates a repeating stripe pattern */
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,                        /* Transparent for 3px */
+    transparent 3px,
+    rgba(255,255,255,.012) 3px,             /* Then a barely-visible white line for 1px */
+    rgba(255,255,255,.012) 4px
+  );
+  pointer-events: none; /* Clicks pass through */
+}
+
+/* The large faint "BOSWELL" text watermark in the background */
+.hero-ghost {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%); /* Centre it perfectly (offset by its own width/height) */
+  font-family: var(--ff-display);
+  /* clamp(min, preferred, max) — font scales with the viewport but never goes below min or above max */
+  font-size: clamp(8rem, 22vw, 22rem);
+  color: transparent;                          /* Invisible fill */
+  -webkit-text-stroke: 1px rgba(149, 149, 149, 0.22); /* Just the faintest outline */
+  white-space: nowrap;    /* Don't wrap to a second line */
+  pointer-events: none;   /* Can't be selected or clicked */
+  user-select: none;
+  letter-spacing: .04em;
+}
+
+/* The div wrapping the actual text content — sits on top of all the background layers */
+.hero-content {
+  position: relative; /* Creates a new stacking context */
+  z-index: 2;         /* Above the bg and scanlines (z-index 0 by default) */
+}
+
+/* "// Concept Artist & Game Designer" — the small label above the name */
+.hero-tag {
+  font-family: var(--ff-mono);
+  font-size: 1.25rem;
+  letter-spacing: .25em;
+  color: var(--accent); /* Orange */
+  margin-bottom: .75rem;
+}
+
+/* The giant "BENJAMIN BOSWELL" heading */
+h1.hero-name {
+  font-family: var(--ff-display);
+  font-size: clamp(3.5rem, 10vw, 8rem); /* Scales between 3.5rem and 8rem based on screen width */
+  line-height: .95;   /* Slightly tighter than default so the two lines feel connected */
+  letter-spacing: .04em;
+  color: var(--paper);
+}
+
+/* The orange box behind "BOSWELL" */
+h1.hero-name .accent-block {
+  display: inline-block;
+  background: var(--accent);  /* Orange fill */
+  color: var(--ink);          /* Dark text on orange */
+  padding: 0 .15em;
+  margin-left: .05em;
+}
+
+/* The short description paragraph with the orange left border */
+.hero-desc {
+  max-width: 460px;           /* Don't let it get too wide */
+  font-size: 1.40rem;         /* I increased the size of description font from 1 too 1.4 */
+  color: var(--dim);          /* Grey text */
+  margin-top: 1.5rem;
+  border-left: 2px solid var(--accent); /* The orange vertical line on the left */
+  padding-left: 1rem;         /* Indent the text away from the border */
+}
+
+/* The row of buttons — "View Work" and "Get In Touch" */
+.hero-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;        /* Space between the two buttons */
+  flex-wrap: wrap;  /* If the screen is too narrow, buttons wrap to the next line */
+}
+
+/* BUTTONS cuts down the corners */
+
+/* Solid orange "View Work" button */
+.btn-primary-custom {
+  font-family: var(--ff-mono);
+  font-size: .8rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  background: var(--accent);  /* Orange fill */
+  color: var(--ink);          /* Dark text */
+  border: none;
+  padding: .75rem 2rem;
+  cursor: pointer;
+  text-decoration: none;      /* Remove underline (this is styled as an <a> tag) */
+  /* Cuts the top-right and bottom-left corners at a 10px diagonal */
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: filter .2s;
+}
+.btn-primary-custom:hover {
+  filter: brightness(1.2); /* Makes the orange brighter on hover */
+  color: var(--ink);
+}
+
+/* Outlined "Get In Touch" button (transparent fill, grey border) */
+.btn-ghost-custom {
+  font-family: var(--ff-mono);
+  font-size: .8rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid var(--edge); /* Grey border */
+  padding: .75rem 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: border-color .2s, color .2s;
+}
+.btn-ghost-custom:hover {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+
+/*SCROLL HINT (the "Scroll" indicator in the bottom-right)*/
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2rem; right: 2.5rem; /* Pinned to bottom-right of hero */
+  font-family: var(--ff-mono);
+  font-size: .65rem;
+  letter-spacing: .2em;
+  color: var(--dim);
+  writing-mode: vertical-rl; /* Rotates the word "Scroll" vertically */
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* The animated orange line above "Scroll" */
+.hero-scroll-hint::before {
+  content: '';           /* Required for pseudo-elements */
+  display: block;
+  width: 2px;
+  height: 80px;
+  /* Gradient from orange at top to transparent at bottom */
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: drip 2s ease-in-out infinite; /* Runs the "drip" animation below, forever */
+}
+
+/* The "drip" animation — pulses the line up and down */
+@keyframes drip {
+  0%, 100% { transform: scaleY(1); opacity: 1; }   /* Full size */
+  50%       { transform: scaleY(.6); opacity: .4; } /* Squish down to 60% size, fade a bit */
+}
+
+
+/* SHARED SECTION STYLES styles that are shared all through out the page*/
+
+/* All <section> tags get the same padding */
+section {
+  padding: 6rem 2.5rem; /* Top/bottom: 6rem, Left/right: 2.5rem */
+}
+
+/* The small "// 01 — About" labels above each section title */
+.section-label {
+  font-family: var(--ff-mono);
+  font-size: 1.15rem;
+  letter-spacing: .3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+/* The big section headings like "WHO I AM", "THE WORK" */
+h2.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: .04em;
+  color: var(--paper);
+  margin-bottom: 3rem;
+}
+
+/* The orange-to-transparent horizontal line under each heading */
+.divider {
+  width: 100%;
+  height: 7px;
+  background: linear-gradient(to right, var(--accent) 0%, transparent 100%);
+  margin-bottom: 4rem;
+}
+
+
+/*MARQUEE / SCROLLING TEXT STRIP  the scrolling words duplicated twice so we can cycle through them */
+.marquee-strip {
+  overflow: hidden; /* Clip anything that extends outside this container */
+  border-top: 1px solid var(--edge);
+  border-bottom: 1px solid var(--edge);
+  padding: .75rem 0;
+  background: var(--ink);
+}
+
+/* The inner track that actually moves */
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  animation: scroll-x 30s linear infinite; /* scroll-x for 30 seconds, looping forever */
+  white-space: nowrap; /* Prevent any wrapping — all items stay on one line */
+}
+
+/* Individual words in the marquee */
+.marquee-track span {
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  letter-spacing: .25em;
+  color: var(--edge);      /* Dark grey — barely visible */
+  text-transform: uppercase;
+}
+
+/* The ✦ separator dots — these are orange */
+.marquee-track span.lit {
+  color: var(--accent);
+}
+
+/* The scrolling animation — moves the track from its start to halfway left */
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* -50% because content is duplicated (2x width) */
+}
+
+
+/* ABOUT SECTION */
+
+/* Slightly lighter background to visually separate from hero */
+#about {
+  background: var(--mid);
+}
+
+/* Two-column grid: photo on left (1 unit wide), text on right (2 units wide) */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* 1fr = 1 fraction, 2fr = 2 fractions of available space */
+  gap: 4rem;
+  align-items: start; /* Align children to the top of each grid cell */
+}
+
+/* On mobile, collapse the two columns into one */
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* Wrapper around the photo — used to add the orange border effect */
+.about-photo-wrap {
+  position: relative; /* Required for ::before to be positioned relative to this */
+}
+
+/* The orange angled border that sits OUTSIDE the photo (offset by 8px) */
+.about-photo-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -8px; /* Extend 8px outside the photo in all directions */
+  border: 2.25px solid var(--accent);
+  /* Same cut-corner shape as the buttons */
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  pointer-events: none;
+}
+
+/* The photo */
+.about-photo {
+  width: 100%;
+  aspect-ratio: 3/4;    /* Maintain a portrait 3:4 ratio */
+  object-fit: cover;    /* Fill the space without distorting */
+  object-position: top; /* Crop from the top (keep the face visible) */
+  filter: grayscale(30%) contrast(1.1); /* Slightly desaturated and punchy */
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  background: var(--edge);
+}
+
+/* The grey placeholder box shown before a real photo is added may need to find a better photo than the one with me in the bathroom lol */
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: var(--edge);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  gap: .5rem;
+}
+
+/* The "[ Your Photo Here ]" text inside the placeholder */
+.photo-placeholder span {
+  font-family: var(--ff-mono);
+  font-size: .65rem;
+  letter-spacing: .2em;
+  color: var(--dim);
+}
+
+/* Paragraphs inside the about text block */
+.about-text p {
+  color: var(--dim);
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+}
+
+/* Bold words inside the about text are brighter */
+.about-text p strong {
+  color: var(--paper);
+}
+
+/* The row of skill tags ("Procreate", "Unity", etc.) */
+.skills-row {
+  display: flex;
+  flex-wrap: wrap; /* Tags wrap to the next line if there's no room */
+  gap: .5rem;
+  margin-top: 1.5rem;
+}
+
+/* Each individual skill tag */
+.skill-tag {
+  font-family: var(--ff-mono);
+  font-size: 1.2rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: .35rem .8rem;
+  border: 1px solid var(--edge);
+  color: var(--dim);
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  transition: border-color .2s, color .2s;
+}
+
+/* Tags turn orange on hover */
+.skill-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* PORTFOLIO SECTION */
+
+#portfolio {
+  background: var(--ink);
+}
+
+/* Each category block (Digital Painting, Manga, etc.) */
+.portfolio-cat {
+  margin-bottom: 4rem; /* Space below each category before the next one */
+}
+
+/* The category heading e.g. "Digital Painting" */
+.portfolio-cat h3 {
+  font-family: var(--ff-display);
+  font-size: 2.6rem;
+  letter-spacing: .08em;
+  color: var(--paper);
+  margin-bottom: .25rem;
+}
+
+/* The small description line under the category heading */
+.portfolio-cat .cat-meta {
+  font-family: var(--ff-mono);
+  font-size: 0.9rem;
+  letter-spacing: .2em;
+  color: var(--dim);
+  margin-bottom: 1.5rem;
+}
+
+
+/* HORIZONTAL SCROLL GALLERY  */
+
+/* The outer wrapper — clips the overflow so only the scrollbar shows */
+.gallery-outer {
+  position: relative;
+  overflow: hidden;
+}
+
+/* The scrollable row of cards */
+.gallery-scroll {
+  display: flex;               /* Cards in a horizontal row */
+  gap: 1.5rem;                 /* Space between cards */
+  overflow-x: auto;            /* Allow horizontal scrolling */
+  scroll-snap-type: x mandatory; /* Snap to the nearest card when scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  padding-bottom: 1rem;        /* Space for the scrollbar so it doesn't overlap cards */
+  cursor: grab;                /* Show "grab hand" cursor to hint at drag functionality */
+}
+
+/* Change cursor while dragging */
+.gallery-scroll:active {
+  cursor: grabbing;
+}
+
+/* Style the horizontal scrollbar inside the gallery */
+.gallery-scroll::-webkit-scrollbar { height: 5px; }
+.gallery-scroll::-webkit-scrollbar-thumb { background: var(--accent); }
+
+/* Each individual card in the gallery */
+.gallery-item {
+  flex: 0 0 auto;   /* Don't shrink or grow — stay at the width we set */
+  /* clamp: minimum 220px, ideally 30% of viewport width, maximum 380px */
+  width: clamp(220px, 30vw, 380px);
+  scroll-snap-align: start; /* Snap to the left edge of each card */
+  position: relative;       /* So the label overlay can be positioned inside */
+  overflow: hidden;         /* Clip the label when it slides out of view */
+  /* The signature cut-corner shape */
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  background: var(--edge);
+  transition: transform .3s; /* Smooth scale animation on hover */
+}
+
+/* Slightly enlarge card on hover */
+.gallery-item:hover {
+  transform: scale(1.1);
+}
+
+/* The image inside each card */
+.gallery-item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;        /* Fill the space, crop as needed */
+  display: block;           /* Remove the tiny gap below inline images */
+  filter: grayscale(20%) contrast(1.05); /* Slightly desaturated */
+  transition: filter .4s;
+}
+
+/* Full colour on hover */
+.gallery-item:hover img {
+  filter: grayscale(0%) contrast(1.1);
+}
+
+/* Grey placeholder box for cards without an image yet */
+.gallery-placeholder {
+  width: 100%;
+  height: 320px;
+  background: var(--edge);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+}
+
+/* The SVG icon inside the placeholder */
+.gallery-placeholder svg { opacity: .2; }
+
+/* The "[ Coming Soon ]" text inside the placeholder */
+.gallery-placeholder span {
+  font-family: var(--ff-mono);
+  font-size: .6rem;
+  letter-spacing: .2em;
+  color: var(--dim);
+}
+
+/* The title label that slides up from the bottom of each card on hover lets people know what they are looking at */
+.gallery-item-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0; /* Pinned to the bottom of the card */
+  padding: .75rem 1rem;
+  /* Dark gradient so text is readable over the image */
+  background: linear-gradient(to top, rgba(10,10,10,.9) 0%, transparent 100%);
+  font-family: var(--ff-mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  color: var(--dim);
+  text-transform: uppercase;
+  transform: translateY(100%); /* Hidden below the card by default */
+  transition: transform .3s;   /* Slides up smoothly */
+}
+
+/* When hovering the card, slide the label into view */
+.gallery-item:hover .gallery-item-label {
+  transform: translateY(0);
+}
+
+/* The ← → arrow buttons below each gallery */
+.gallery-arrows {
+  display: flex;
+  gap: .75rem;
+  margin-top: 1.25rem;
+  justify-content: flex-end; /* Push arrows to the right */
+}
+
+/* Each arrow button */
+.gallery-arrow {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--edge);
+  background: none;
+  color: var(--paper);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: border-color .2s, color .2s;
+}
+
+.gallery-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/*GAMES / VIDEO SECTION  Big decloration of what i can direct and create in games*/
+
+#games {
+  background: var(--mid); /* Alternate background so it reads as a different section */
+}
+
+/* Responsive grid of video cards — fills available space evenly */
+.video-grid {
+  display: grid;
+  /* auto-fill: create as many columns as fit; minmax(280px, 1fr): each at least 280px wide */
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Each video card */
+.video-card {
+  position: relative;
+  background: var(--edge);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* The dark placeholder area where the video will go */
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;   /* Standard video aspect ratio */
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  position: relative;   /* So ::after overlay works */
+}
+
+/* Subtle diagonal stripe texture over the video placeholder */
+.video-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(255,255,255,.015) 4px,
+    rgba(255,255,255,.015) 8px
+  );
+}
+
+/* The circular play button */
+.play-icon {
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;   /* Makes it a circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;           /* Sit above the stripe texture */
+  transition: background .2s;
+}
+
+/* The triangle "play" arrow — drawn entirely with CSS borders (a classic trick) */
+.play-icon::after {
+  content: '';
+  border-style: solid;
+  /* A transparent box with only the left border coloured creates a triangle pointing right */
+  border-width: 9px 0 9px 18px;
+  border-color: transparent transparent transparent var(--accent);
+  margin-left: 3px; /* Nudge it slightly right so it looks centred */
+}
+
+/* Highlight the play button when hovering the card */
+.video-card:hover .play-icon {
+  background: rgba(255,78,0,.15);
+}
+
+/* The text label area below the video placeholder */
+.video-card-label {
+  padding: .9rem 1rem;
+}
+
+/* Project title */
+.video-card-label h4 {
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  letter-spacing: .05em;
+  color: var(--paper);
+  margin-bottom: .2rem;
+}
+
+/* Project subtitle / description */
+.video-card-label p {
+  font-family: var(--ff-mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  color: var(--dim);
+}
+
+
+/* CONTACT SECTION */
+
+#contact {
+  background: var(--ink);
+  position: relative; /* So ::before ghost text is positioned here */
+  overflow: hidden;
+}
+
+/* The giant faint "CONTACT" watermark in the background */
+#contact::before {
+  content: 'CONTACT';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--ff-display);
+  font-size: clamp(5rem, 18vw, 18rem);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(222, 222, 222, 0.061);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Two-column grid: contact info left, form right */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  position: relative; /* So z-index works to sit above the ::before watermark */
+  z-index: 1;
+}
+
+/* Stack into one column on mobile */
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* The descriptive paragraph in the contact section */
+.contact-info p {
+  color: var(--dim);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Each social/contact link row (email, GitHub, etc.) */
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--edge);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: var(--ff-mono);
+  font-size: .8rem;
+  letter-spacing: .1em;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: border-color .2s, background .2s;
+  margin-bottom: .75rem;
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+  background: rgba(255,78,0,.05);
+  color: var(--paper);
+}
+
+/* The icon character before each link's text */
+.contact-link .link-icon {
+  color: var(--accent);
+  font-size: 1rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* The contact form — stacks fields vertically */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Each label + input/textarea pair */
+.form-field {
+  display: flex;
+  flex-direction: column; /* Label above the input */
+  gap: .35rem;
+}
+
+/* The labels ("Name", "Email", "Message") */
+.form-field label {
+  font-family: var(--ff-mono);
+  font-size: .65rem;
+  letter-spacing: .2em;
+  color: var(--accent); /* Orange labels */
+  text-transform: uppercase;
+}
+
+/* Text inputs and the textarea */
+.form-field input,
+.form-field textarea {
+  background: var(--mid);
+  border: 1px solid var(--edge);
+  color: var(--paper);
+  font-family: var(--ff-body);
+  font-size: .95rem;
+  padding: .75rem 1rem;
+  outline: none; /* Remove the browser's default blue focus ring */
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: border-color .2s;
+}
+
+/* Turn the border orange when an input is focused (clicked into) */
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--accent);
+}
+
+/* Only the textarea can be resized — and only vertically */
+.form-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+
+/* FOOTER  */
+
+footer {
+  border-top: 1px solid var(--edge);
+  padding: 2rem 2.5rem;
+  display: flex;
+  justify-content: space-between; /* Copyright on left, links on right */
+  align-items: center;
+  flex-wrap: wrap;  /* Wrap on very small screens */
+  gap: 1rem;
+  background: var(--mid);
+}
+
+footer p {
+  font-family: var(--ff-mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  color: var(--dim);
+}
+
+/* The small footer nav links (Top, Work, Contact) */
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-family: var(--ff-mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  color: var(--dim);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+
+/*SCROLL REVEAL ANIMATION using javascripts with css can reveal everything */
+
+/* Starting state — invisible and shifted down 30px */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .7s ease, transform .7s ease; /* Animate both over 0.7 seconds */
+}
+
+/* Final state — fully visible at normal position */
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* LIGHTBOX (full-screen image viewer) clicking gallery image makes a temp overlay using java script i heavely referenced an example website to get the results you see.*/
+
+#lightbox {
+  display: none;          /* Hidden by default */
+  position: fixed;        /* Covers the entire viewport */
+  inset: 0;
+  background: rgba(0,0,0,.92); /* Very dark semi-transparent overlay */
+  z-index: 9998;          /* Above everything except the grain (9999) */
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* When JavaScript adds "open", switch to flex to centre the image */
+#lightbox.open {
+  display: flex;
+}
+
+/* The image inside the lightbox */
+#lightbox img {
+  max-width: 90vw;   /* Never wider than 90% of the viewport */
+  max-height: 88vh;  /* Never taller than 88% of the viewport */
+  object-fit: contain; /* Show the whole image without cropping */
+  /* A soft orange glow around the image */
+  box-shadow: 0 0 80px rgba(255,78,0,.2);
+}
+
+/* The "[ CLOSE ]" button in the top-right of the lightbox */
+#lightbox-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  background: none;
+  border: 1px solid var(--edge);
+  color: var(--paper);
+  font-family: var(--ff-mono);
+  font-size: .8rem;
+  letter-spacing: .15em;
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+
+#lightbox-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
